@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `4ep_sk2_mvc_prispevky` (
   `id` int(11) NOT NULL,
-  `jmeno` varchar(30) COLLATE utf8_czech_ci NOT NULL,
+  `autor` varchar(30) COLLATE utf8_czech_ci NOT NULL,
   `nadpis` varchar(255) COLLATE utf8_czech_ci NOT NULL,
-  `prispevek` varchar(255) COLLATE utf8_czech_ci NOT NULL,
+  `obsah` varchar(255) COLLATE utf8_czech_ci NOT NULL,
   `cas_pridani_prispevku` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
@@ -43,7 +43,7 @@ CREATE TABLE `4ep_sk2_mvc_prispevky` (
 --
 ALTER TABLE `4ep_sk2_mvc_prispevky`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `jmeno_uzivatele` (`jmeno`);
+  ADD KEY `autor` (`autor`);
 
 --
 -- AUTO_INCREMENT pro tabulky
