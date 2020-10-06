@@ -18,6 +18,8 @@
             {
         ?>
         <a href="<?php echo $zakladni_url; ?>index.php/stranky/profil/">Profil</a>
+        <a href="<?php echo $zakladni_url; ?>index.php/prispevky/vytvorit/">Vytvořit příspěvek</a>
+        <a href="<?php echo $zakladni_url; ?>index.php/prispevky/zobrazit/">Zobrazit mé příspěvky</a>
         <?php
             }
             else

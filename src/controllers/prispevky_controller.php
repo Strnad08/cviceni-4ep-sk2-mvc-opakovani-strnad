@@ -37,8 +37,6 @@ class Prispevky
 
                 if($prispevek->vytvor_se())
                 {
-                    // uzivatel je uspesne registrovan
-                    // presmeruju ho na prihlaseni
                     return spustit("prispevky", "zobrazit");
                 }
                 else
@@ -59,41 +57,23 @@ class Prispevky
 
     public function zobrazit()
     {
-        if($this->mam_dostatek_dat_k_prihlaseni())
+        session_start();
+        $autor = $_SESSION["prihlaseny_uzivatel"];
+
+        if(Prispevek::zobrazit($autor))
         {
-            $jmeno = trim($_POST["jmeno"]);
-            $heslo = trim($_POST["heslo"]);
+            session_destroy();
+            session_start();
 
-            if(Uzivatel::existuje($jmeno, $heslo))
-            {
-                session_destroy();
-                session_start();
+            $_SESSION["prihlaseny_uzivatel"] = $jmeno;
 
-                $_SESSION["prihlaseny_uzivatel"] = $jmeno;
+            global $zakladni_url;
 
-                global $zakladni_url;
-
-                header("location:".$zakladni_url."index.php/stranky/profil/");
-            }
-            else
-            {
-                require_once "views/uzivatele/prihlasit.php";
-            }
+            header("location:".$zakladni_url."index.php/prispevky/zobrazit/");
         }
         else
         {
             require_once "views/uzivatele/prihlasit.php";
         }
-    }
-
-    public function odhlasit()
-    {
-        session_destroy();
-        unset($_SESSION["prihlaseny_uzivatel"]);
-        session_start();
-
-        global $zakladni_url;
-
-        header("location:".$zakladni_url."index.php/stranky/domu/");
     }
 }
