@@ -23,20 +23,13 @@ class Prispevek
         return mysqli_affected_rows($spojeni) == 1;
     }
 
-    static public function zobrazeni($autor)
+    static public function muzu_zobrazit($autor)
     {
         $spojeni = DB::pripojit();
 
         $dotaz = "SELECT * FROM 4ep_sk2_mvc_prispevky WHERE autor='$autor'";
         $vysledek = mysqli_query($spojeni, $dotaz);
 
-        if(mysqli_num_rows($vysledek) == 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return mysqli_num_rows($vysledek) == 1;
     }
 }

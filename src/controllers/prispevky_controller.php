@@ -60,20 +60,15 @@ class Prispevky
         session_start();
         $autor = $_SESSION["prihlaseny_uzivatel"];
 
-        if(Prispevek::zobrazit($autor))
+        if(Prispevek::muzu_zobrazit($autor))
         {
-            session_destroy();
-            session_start();
-
-            $_SESSION["prihlaseny_uzivatel"] = $jmeno;
-
             global $zakladni_url;
 
             header("location:".$zakladni_url."index.php/prispevky/zobrazit/");
         }
         else
         {
-            require_once "views/uzivatele/prihlasit.php";
+            require_once "views/prispevky/nezobrazit.php";
         }
     }
 }

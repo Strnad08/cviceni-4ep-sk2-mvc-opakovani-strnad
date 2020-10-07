@@ -12,6 +12,11 @@ $povolene_controllery_a_akce = array(
         "prihlasit",
         "odhlasit",
     ),
+    "prispevky" => array(
+        "vytvorit",
+        "zobrazit",
+        "nezobrazit",
+    ),
 );
 
 // osetreni pro nezadany controller nebo akci
@@ -45,6 +50,10 @@ function spustit($controller, $akce)
         case "uzivatele":
             require_once "models/Uzivatel.php";
             $aktivni_controller = new Uzivatele();
+            break;
+        case "prispevky":
+            require_once "models/Prispevek.php";
+            $aktivni_controller = new Prispevky();
             break;
     }
 
