@@ -26,7 +26,6 @@ class Prispevky
     {
         if($this->mam_dostatek_dat_k_vytvoreni())
         {
-            session_start();
             $autor = $_SESSION["prihlaseny_uzivatel"];
             $nadpis = trim($_POST["nadpis"]);
             $obsah = trim($_POST["obsah"]);
@@ -57,14 +56,11 @@ class Prispevky
 
     public function zobrazit()
     {
-        session_start();
         $autor = $_SESSION["prihlaseny_uzivatel"];
 
         if(Prispevek::muzu_zobrazit($autor))
         {
-            global $zakladni_url;
-
-            header("location:".$zakladni_url."index.php/prispevky/zobrazit/");
+            require_once "views/prispevky/zobrazit.php";
         }
         else
         {

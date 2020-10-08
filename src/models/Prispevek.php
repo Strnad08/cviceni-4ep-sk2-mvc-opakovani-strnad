@@ -30,6 +30,6 @@ class Prispevek
         $dotaz = "SELECT * FROM 4ep_sk2_mvc_prispevky WHERE autor='$autor'";
         $vysledek = mysqli_query($spojeni, $dotaz);
 
-        return mysqli_num_rows($vysledek) == 1;
+        return mysqli_num_rows($vysledek) >= 1;
     }
 }
